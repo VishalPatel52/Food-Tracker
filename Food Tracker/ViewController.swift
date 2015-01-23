@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
+    let kAppId = "b6cf9193"
+    let kAppKey = "2cd0d3a56dc01fce7233d0a748ed579a"
     
     var searchController: UISearchController!
     
@@ -115,5 +117,81 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    // Mark - UISearchBarDelegate
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        makeRequest(searchBar.text)
+    }
+    
+    // Mark - API MakeRequest
+    
+    func makeRequest (searchString: String) {
+        
+        //*********** How to make HTTP Get Request, see below code: ******************
+
+//        let url = NSURL(string: "https://api.nutritionix.com/v1_1/search/\(searchString)?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=\(kAppId)&appKey=\(kAppKey)")
+//        let task = NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
+//            var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
+//            println(stringData)
+//            println(response)
+//        })
+//        
+//        task.resume()
+        
+        //************** END **********************************************************
+        
+        //************** How to make HTTP Post Request **********************************
+        
+        let url = NSURL(string: "https://api.nutritionix.com/v1_1/search/")!
+        var request = NSMutableURLRequest(URL: url)
+        
+        let session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        
+        var params = [
+            "appId"     : kAppId,
+            "appKey"    : kAppKey,
+            "fields"    : ["item_name", "brand_name", "keywords", "usda_fields"],
+            "limit"     : "50",
+            "query"     : searchString,
+            "filters"   : ["exists": ["usda_fields":true]]]
+        
+        var error : NSError?
+        
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &error)
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, err) -> Void in
+            
+            //convert data in to human readable strings
+            var conversionError : NSError?
+            var jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves, error: &conversionError) as? NSDictionary
+            
+            println(jsonDictionary)
+            
+            //Error Handlig
+            if conversionError != nil {
+                println(conversionError!.localizedDescription)
+                var errorString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("Error in parsing : \(errorString)")
+            }
+            else {
+                if jsonDictionary != nil {
+                    
+                }
+                else {
+                    var errorString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    println("Error could not parse JSON \(errorString)")
+                }
+            }
+        })
+        task.resume()
+        
+        
+        
+        
+        
+    }
 }
 
