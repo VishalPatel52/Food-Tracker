@@ -29,14 +29,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Mark - setting up the searchController in TableView
+        //MARK: - setting up the searchController in TableView
         self.searchController = UISearchController(searchResultsController: nil)
         self.searchController.searchResultsUpdater = self
-        self.searchController.dimsBackgroundDuringPresentation = true
+        self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.hidesNavigationBarDuringPresentation = false
         
         
-        // Mark - Setting up the searchBar in searchController
+        //MARK: - Setting up the searchBar in searchController
         
         self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.width, 44.0)
         self.tableView.tableHeaderView = self.searchController.searchBar
@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
     
-    // Mark - UITableViewDataSource
+    //MARK: - UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -117,7 +117,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    // Mark - UITableViewDelegate
+    //MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
@@ -143,7 +143,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    // Mark - UISearchResultsUpdating Delegate
+    //MARK: - UISearchResultsUpdating Delegate
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
@@ -176,7 +176,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.searchController.searchBar.selectedScopeButtonIndex = 0
     }
-    // Mark - API MakeRequest
+    
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
+        self.tableView.reloadData()
+    }
+    
+    //MARK: - API MakeRequest
     
     func makeRequest (searchString: String) {
         

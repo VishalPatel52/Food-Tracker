@@ -18,7 +18,7 @@ class DataController {
         
         if json["hits"] != nil{
             
-            let resutls:[AnyObject] = json["hits"] as [AnyObject]
+            let resutls:[AnyObject] = json["hits"]! as [AnyObject]
             
             for itemDictionary in resutls {
                 if itemDictionary["_id"] != nil{
@@ -35,5 +35,12 @@ class DataController {
         return usdaItemSearchResults
     }
     
-    
+    func saveUSDAItemForId (idValue : String, json : NSDictionary) {
+        if json["hits"] != nil{
+            let results[AnyObject] = json["hits"]! as [AnyObject]
+            for itemDictionary in results {
+                
+            }
+        }
+    }
 }

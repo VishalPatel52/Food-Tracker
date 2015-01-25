@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9008FE21A759D9200E497D0 /* USDAItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9008FE11A759D9200E497D0 /* USDAItem.swift */; };
 		C9B9E4D71A72981200E5D4AB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9E4D61A72981200E5D4AB /* DataController.swift */; };
 		C9D934E01A715F4D008DA4B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D934DF1A715F4D008DA4B3 /* AppDelegate.swift */; };
 		C9D934E31A715F4D008DA4B3 /* Food_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9D934E11A715F4D008DA4B3 /* Food_Tracker.xcdatamodeld */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C9008FE11A759D9200E497D0 /* USDAItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDAItem.swift; sourceTree = "<group>"; };
 		C9B9E4D61A72981200E5D4AB /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		C9D934DA1A715F4D008DA4B3 /* Food Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D934DE1A715F4D008DA4B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				C9D934E91A715F4D008DA4B3 /* Images.xcassets */,
 				C9D934EB1A715F4D008DA4B3 /* LaunchScreen.xib */,
 				C9D934E11A715F4D008DA4B3 /* Food_Tracker.xcdatamodeld */,
+				C9008FE11A759D9200E497D0 /* USDAItem.swift */,
 				C9D934DD1A715F4D008DA4B3 /* Supporting Files */,
 			);
 			path = "Food Tracker";
@@ -224,6 +227,7 @@
 				C9B9E4D71A72981200E5D4AB /* DataController.swift in Sources */,
 				C9D934E51A715F4D008DA4B3 /* ViewController.swift in Sources */,
 				C9D934E31A715F4D008DA4B3 /* Food_Tracker.xcdatamodeld in Sources */,
+				C9008FE21A759D9200E497D0 /* USDAItem.swift in Sources */,
 				C9D934E01A715F4D008DA4B3 /* AppDelegate.swift in Sources */,
 				C9D935031A716120008DA4B3 /* DetailViewController.swift in Sources */,
 			);
