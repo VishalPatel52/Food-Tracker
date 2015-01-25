@@ -120,7 +120,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Mark - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex 
+        let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+        
+        if selectedScopeButtonIndex == 0 {
+            var searchFoodName : String
+            
+            if self.searchController.active {
+                searchFoodName = self.filteredSuggestedSearchFoods[indexPath.row]
+            }
+            else {
+                searchFoodName = self.suggestedSearchFoods[indexPath.row]
+            }
+            self.searchController.searchBar.selectedScopeButtonIndex = 1
+            self.makeRequest(searchFoodName)
+            
+        }
+        else if selectedScopeButtonIndex == 1 {
+            
+        }
+        else if selectedScopeButtonIndex == 2 {
+            
+        }
     }
     
     // Mark - UISearchResultsUpdating Delegate
